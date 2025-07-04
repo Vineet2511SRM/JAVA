@@ -35,6 +35,6 @@ public class OTPGenerator{
 
         // Check uniqueness
         boolean unique = areOTPsUnique(otpArray);
-        System.out.println("\nAre all OTPs unique? " + (unique ? "Yes ✅" : "No ❌"));
+        System.out.println("\nAre all OTPs unique? " + (unique ? "Yes " : "No "));
     }
 }
