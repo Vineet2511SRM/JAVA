@@ -6,13 +6,13 @@ public class FeeCalculator {
         double fee, discountPercent, discount, discounted_Fee;
 
         
-        Scanner input = new Scanner(System.in);
+        Scanner inp = new Scanner(System.in);
 
         System.out.print("Enter the student fee (INR): ");
-        fee = input.nextDouble();
+        fee = inp.nextDouble();
 
         System.out.print("Enter the university discount percentage: ");
-        discountPercent = input.nextDouble();
+        discountPercent = inp.nextDouble();
 
         
         discount = (fee * discountPercent) / 100;
@@ -24,6 +24,6 @@ public class FeeCalculator {
         System.out.println("The discount amount is INR " + discount + " and the final discounted fee is INR " + discounted_Fee + ".");
 
         
-        input.close();
+        inp.close();
     }
 }
