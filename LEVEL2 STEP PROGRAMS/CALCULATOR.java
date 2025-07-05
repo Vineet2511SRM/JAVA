@@ -3,13 +3,13 @@ import java.util.*;
 public class CALCULATOR {
     public static void main(String[] args) {
         float number1, number2, add, sub, multi, div = 0;
-        Scanner sc = new Scanner(System.in);
+        Scanner scr = new Scanner(System.in);
         
         System.out.print("Enter number1: ");
-        number1 = sc.nextFloat();
+        number1 = scr.nextFloat();
         
         System.out.print("Enter number2: ");
-        number2 = sc.nextFloat();
+        number2 = scr.nextFloat();
 
         add = number1 + number2;
         sub = number1 - number2;
@@ -30,6 +30,6 @@ public class CALCULATOR {
             System.out.println(", and undefined (division by zero)");
         }
 
-        sc.close(); 
+        scr.close(); 
     }
 }
