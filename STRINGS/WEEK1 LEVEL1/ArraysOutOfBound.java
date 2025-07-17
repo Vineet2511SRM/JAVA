@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class ArraysOutOfBound {
 
-    // method to generate ArrayIndexOutOfBoundsException
+    // function to generate ArrayIndexOutOfBoundsException
     public static void generateException(String[] names) {
         System.out.println("\nTrying to access index beyond array size...");
         // deliberately accessing a wrong index
