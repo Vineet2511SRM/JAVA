@@ -15,3 +15,14 @@ public class Program2 {
         }
     }
 }
+
+/* Sample Input/Output:
+Enter an integer number :
+4
+The given number 4 is even
+
+Enter an integer number :
+5
+The given number 5 is odd
+*/
+

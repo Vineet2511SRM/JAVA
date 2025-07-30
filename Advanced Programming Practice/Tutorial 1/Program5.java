@@ -13,3 +13,11 @@ public class Program5 {
         System.out.println("Value of x after pre-increment: " + x); // prints 7
     }
 }
+
+/* Sample Input/Output:
+Initial value of x: 5
+Post-increment (x++): 5
+Value of x after post-increment: 6
+Pre-increment (++x): 7
+Value of x after pre-increment: 7
+*/

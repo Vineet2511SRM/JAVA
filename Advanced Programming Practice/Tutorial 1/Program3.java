@@ -18,3 +18,11 @@ public class Program3 {
         scanner.close();
     }
 }
+
+/* Sample Input/Output:
+Enter any integer: 9
+9 is divisible by 3.
+
+Enter any integer: 10
+10 is NOT divisible by 3.
+*/

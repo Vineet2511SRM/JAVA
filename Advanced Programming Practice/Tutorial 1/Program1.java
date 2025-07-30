@@ -15,3 +15,13 @@ public class Program1 {
         }
     }
 }
+
+/* Sample Input/Output:
+Enter the age of the person :
+20
+Eligible to vote
+
+Enter the age of the person :
+17
+Not eligible to vote
+*/

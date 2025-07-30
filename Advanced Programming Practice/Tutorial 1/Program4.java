@@ -19,3 +19,16 @@ public class Program4 {
     ob.close();
     }
 }
+
+/* Sample Input/Output:
+Enter a sentence:
+Hello World! This is a Java program.
+Words in the sentence are:
+Hello
+World!
+This
+is
+a
+Java
+program.
+*/
