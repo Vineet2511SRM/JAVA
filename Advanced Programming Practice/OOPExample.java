@@ -3,10 +3,16 @@ class Student {
     private String name;
     private int age;
 
-    // Constructor
+    // Constructor (Parameterized)
     public Student(String name, int age) {
         this.name = name;
         this.age = age;
+    }
+
+    // Default constructor
+    public Student() {
+        this.name = "Unknown";
+        this.age = 0;
     }
 
     // Getter and Setter
@@ -43,7 +49,7 @@ public class OOPExample {
         Student student1 = new Student("Alice", 20);
         Student student2 = new Student("Charlie", 23);
 
-        // Displaying initial info
+        // Displaying first student's initial info
         student1.displayInfo("Student 1 - Initial Info");
 
         // Updating student1
@@ -58,5 +64,13 @@ public class OOPExample {
         student2.setName("David");
         student2.setAge(25);
         student2.displayInfo("Student 2 - After Updates");
+
+        // Demonstrating default constructor
+        Student defaultStudent = new Student();
+        defaultStudent.displayInfo("Default Student - Initial Info");
+        defaultStudent.setName("Eve");
+        defaultStudent.setAge(18);
+        defaultStudent.displayInfo("Default Student - After Updates");
+        
     }
 }
