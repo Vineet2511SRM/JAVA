@@ -10,11 +10,11 @@ public class Program2 {
         System.out.print("Enter a year: ");
         int year = obj.nextInt();
 
-        // Check divisibility by 4 
+        // Check divisibility by 4 and 100
         if (year % 4 == 0 && year % 100 != 0) {
             System.out.println(year + " is a leap year.");
-        } else if (year % 100 == 0) {
-            // Check divisibility by 400
+        } else if (year % 100 == 0) { // Check if the year is divisible by 100
+            // Step 2: If divisible by 100, check divisibility by 400
             if (year % 400 == 0) {
                 System.out.println(year + " is a leap year.");
             } else {
