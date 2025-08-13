@@ -33,9 +33,6 @@ public class StringMethods {
         System.out.println("Favorite Programming Language: " + upperCaseLanguage);
         System.out.println("Programming Experience Sentence: " + experienceSentence);
         System.out.println("Total Characters in Experience Sentence (excluding spaces): " + charCount);
-        
-
-
 
         obj.close();
     }
