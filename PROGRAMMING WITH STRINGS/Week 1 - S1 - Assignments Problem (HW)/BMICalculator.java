@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class BMICalculator {
 
-    // Method to calculate BMI and status...
     public static String[] calculateBMIStatus(double weight, double heightCm) {
         double heightM = heightCm / 100.0; // convert cm to meters
         double bmi = weight / (heightM * heightM);
