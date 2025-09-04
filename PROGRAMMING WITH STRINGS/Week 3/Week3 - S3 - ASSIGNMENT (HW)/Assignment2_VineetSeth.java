@@ -2,10 +2,10 @@
  * Assignment 2: Online Shopping Cart System
  * Author: Vineet Seth
  * Description: A menu-driven shopping cart system demonstrating object
- * relationships and method interaction between Product and ShoppingCart classes.
+ * relationships, error handling, and method interaction between Product and ShoppingCart classes.
  */
 
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Represents a product available in the store.
@@ -17,7 +17,6 @@ class Product {
     private String category;
     private int stockQuantity;
 
-    // Static variables
     private static int totalProducts = 0;
     private static String[] categories = {"Electronics", "Clothing", "Books", "Home", "Sports"};
 
@@ -33,20 +32,22 @@ class Product {
         totalProducts++;
     }
 
-    // ---------------- Getters ----------------
+    // ---------- Getters ----------
     public String getProductId() { return productId; }
     public String getProductName() { return productName; }
     public double getPrice() { return price; }
     public String getCategory() { return category; }
     public int getStockQuantity() { return stockQuantity; }
 
-    // Reduce stock
+    /**
+     * Reduces stock by given quantity.
+     */
     public void reduceStock(int qty) { stockQuantity -= qty; }
 
-    // Increase stock
+    /**
+     * Increases stock by given quantity.
+     */
     public void increaseStock(int qty) { stockQuantity += qty; }
-
-    // ---------------- Static methods ----------------
 
     /**
      * Finds a product by its ID.
@@ -64,17 +65,20 @@ class Product {
     }
 
     /**
-     * Returns products by category.
+     * Displays products by category.
      * @param products array of products
      * @param category category name
      */
     public static void getProductsByCategory(Product[] products, String category) {
         System.out.println("\nProducts in category: " + category);
+        boolean found = false;
         for (Product p : products) {
             if (p.getCategory().equalsIgnoreCase(category)) {
                 System.out.println(p);
+                found = true;
             }
         }
+        if (!found) System.out.println("No products found in this category.");
     }
 
     @Override
@@ -110,22 +114,27 @@ class ShoppingCart {
      * Adds a product to the cart.
      */
     public void addProduct(Product product, int quantity) {
-        if (product.getStockQuantity() < quantity) {
-            System.out.println("Not enough stock for " + product.getProductName());
-            return;
+        try {
+            if (quantity <= 0) throw new IllegalArgumentException("Quantity must be greater than zero.");
+            if (quantity > product.getStockQuantity()) throw new IllegalArgumentException("Not enough stock for " + product.getProductName());
+            if (itemCount >= products.length) throw new IllegalStateException("Cart is full. Cannot add more items.");
+
+            products[itemCount] = product;
+            quantities[itemCount] = quantity;
+            product.reduceStock(quantity);
+            itemCount++;
+            calculateTotal();
+            System.out.println(quantity + " x " + product.getProductName() + " added to cart.");
+        } catch (Exception e) {
+            System.out.println("Error adding product: " + e.getMessage());
         }
-        products[itemCount] = product;
-        quantities[itemCount] = quantity;
-        product.reduceStock(quantity);
-        itemCount++;
-        calculateTotal();
-        System.out.println(quantity + " x " + product.getProductName() + " added to cart.");
     }
 
     /**
-     * Removes a product by ID.
+     * Removes a product from the cart by its ID.
      */
     public void removeProduct(String productId) {
+        boolean found = false;
         for (int i = 0; i < itemCount; i++) {
             if (products[i].getProductId().equalsIgnoreCase(productId)) {
                 products[i].increaseStock(quantities[i]); // restore stock
@@ -139,14 +148,15 @@ class ShoppingCart {
                 quantities[itemCount - 1] = 0;
                 itemCount--;
                 calculateTotal();
-                return;
+                found = true;
+                break;
             }
         }
-        System.out.println("Product not found in cart.");
+        if (!found) System.out.println("Product not found in cart.");
     }
 
     /**
-     * Calculates total cost of cart.
+     * Calculates the total cost of the cart.
      */
     public void calculateTotal() {
         cartTotal = 0.0;
@@ -161,17 +171,25 @@ class ShoppingCart {
     public void displayCart() {
         System.out.println("\n--- Cart Summary ---");
         System.out.println("Customer: " + customerName + " | Cart ID: " + cartId);
-        for (int i = 0; i < itemCount; i++) {
-            System.out.println(products[i].getProductName() + " x " + quantities[i] +
-                               " = ₹" + (products[i].getPrice() * quantities[i]));
+        if (itemCount == 0) {
+            System.out.println("Cart is empty.");
+        } else {
+            for (int i = 0; i < itemCount; i++) {
+                System.out.println(products[i].getProductName() + " x " + quantities[i] +
+                                   " = ₹" + (products[i].getPrice() * quantities[i]));
+            }
+            System.out.println("Cart Total: ₹" + cartTotal);
         }
-        System.out.println("Cart Total: ₹" + cartTotal);
     }
 
     /**
      * Checkout process.
      */
     public void checkout() {
+        if (itemCount == 0) {
+            System.out.println("Cart is empty. Nothing to checkout.");
+            return;
+        }
         displayCart();
         System.out.println("Checkout complete! Thank you for shopping, " + customerName + "!");
         itemCount = 0;
@@ -186,7 +204,7 @@ public class Assignment2_VineetSeth {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        // Create sample products (10 items)
+        // Sample products
         Product[] products = {
             new Product("P101", "Laptop", 55000, "Electronics", 5),
             new Product("P102", "Headphones", 1500, "Electronics", 10),
@@ -200,64 +218,65 @@ public class Assignment2_VineetSeth {
             new Product("P110", "Cricket Bat", 1500, "Sports", 5)
         };
 
-        // Create cart
         ShoppingCart cart = new ShoppingCart("CART001", "Vineet", 20);
 
-        int choice;
+        int choice = -1;
         do {
-            System.out.println("\n=== Online Shopping Menu ===");
-            System.out.println("1. View All Products");
-            System.out.println("2. View Products by Category");
-            System.out.println("3. Add Product to Cart");
-            System.out.println("4. Remove Product from Cart");
-            System.out.println("5. View Cart");
-            System.out.println("6. Checkout");
-            System.out.println("0. Exit");
-            System.out.print("Enter choice: ");
-            choice = sc.nextInt();
-            sc.nextLine(); // consume newline
+            try {
+                System.out.println("\n=== Online Shopping Menu ===");
+                System.out.println("1. View All Products");
+                System.out.println("2. View Products by Category");
+                System.out.println("3. Add Product to Cart");
+                System.out.println("4. Remove Product from Cart");
+                System.out.println("5. View Cart");
+                System.out.println("6. Checkout");
+                System.out.println("0. Exit");
+                System.out.print("Enter choice: ");
+                choice = Integer.parseInt(sc.nextLine());
 
-            switch (choice) {
-                case 1:
-                    System.out.println("\nAvailable Products:");
-                    for (Product p : products) {
-                        System.out.println(p);
-                    }
-                    break;
-                case 2:
-                    System.out.print("Enter category (Electronics/Clothing/Books/Home/Sports): ");
-                    String cat = sc.nextLine();
-                    Product.getProductsByCategory(products, cat);
-                    break;
-                case 3:
-                    System.out.print("Enter Product ID: ");
-                    String pid = sc.nextLine();
-                    Product prod = Product.findProductById(products, pid);
-                    if (prod != null) {
-                        System.out.print("Enter quantity: ");
-                        int qty = sc.nextInt();
-                        sc.nextLine();
-                        cart.addProduct(prod, qty);
-                    } else {
-                        System.out.println("Invalid Product ID.");
-                    }
-                    break;
-                case 4:
-                    System.out.print("Enter Product ID to remove: ");
-                    String remId = sc.nextLine();
-                    cart.removeProduct(remId);
-                    break;
-                case 5:
-                    cart.displayCart();
-                    break;
-                case 6:
-                    cart.checkout();
-                    break;
-                case 0:
-                    System.out.println("Exiting... Goodbye!");
-                    break;
-                default:
-                    System.out.println("Invalid choice. Try again.");
+                switch (choice) {
+                    case 1:
+                        System.out.println("\nAvailable Products:");
+                        for (Product p : products) System.out.println(p);
+                        break;
+                    case 2:
+                        System.out.print("Enter category: ");
+                        String cat = sc.nextLine();
+                        Product.getProductsByCategory(products, cat);
+                        break;
+                    case 3:
+                        System.out.print("Enter Product ID: ");
+                        String pid = sc.nextLine();
+                        Product prod = Product.findProductById(products, pid);
+                        if (prod != null) {
+                            System.out.print("Enter quantity: ");
+                            int qty = Integer.parseInt(sc.nextLine());
+                            cart.addProduct(prod, qty);
+                        } else {
+                            System.out.println("Invalid Product ID.");
+                        }
+                        break;
+                    case 4:
+                        System.out.print("Enter Product ID to remove: ");
+                        String remId = sc.nextLine();
+                        cart.removeProduct(remId);
+                        break;
+                    case 5:
+                        cart.displayCart();
+                        break;
+                    case 6:
+                        cart.checkout();
+                        break;
+                    case 0:
+                        System.out.println("Exiting... Goodbye!");
+                        break;
+                    default:
+                        System.out.println("Invalid choice. Try again.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input! Please enter a valid number.");
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
             }
         } while (choice != 0);
 

@@ -5,8 +5,6 @@
  * expenses, and savings for individuals using OOP principles.
  */
 
-import java.util.*;
-
 /**
  * Represents a personal account in the finance manager system.
  */
@@ -44,7 +42,7 @@ class PersonalAccount {
             }
             currentBalance += amount;
             totalIncome += amount;
-            System.out.println(accountHolderName + " received income: ₹" + amount + " (" + description + ")");
+            System.out.println(accountHolderName + " received income: Rs " + amount + " (" + description + ")");
         } catch (Exception e) {
             System.out.println("Error adding income: " + e.getMessage());
         }
@@ -65,7 +63,7 @@ class PersonalAccount {
             }
             currentBalance -= amount;
             totalExpenses += amount;
-            System.out.println(accountHolderName + " spent: ₹" + amount + " (" + description + ")");
+            System.out.println(accountHolderName + " spent: Rs " + amount + " (" + description + ")");
         } catch (Exception e) {
             System.out.println("Error adding expense: " + e.getMessage());
         }
@@ -87,10 +85,10 @@ class PersonalAccount {
         System.out.println("Bank Name: " + bankName);
         System.out.println("Account Holder: " + accountHolderName);
         System.out.println("Account Number: " + accountNumber);
-        System.out.println("Current Balance: ₹" + currentBalance);
-        System.out.println("Total Income: ₹" + totalIncome);
-        System.out.println("Total Expenses: ₹" + totalExpenses);
-        System.out.println("Total Savings: ₹" + calculateSavings());
+        System.out.println("Current Balance: Rs " + currentBalance);
+        System.out.println("Total Income: Rs " + totalIncome);
+        System.out.println("Total Expenses: Rs " + totalExpenses);
+        System.out.println("Total Savings: Rs " + calculateSavings());
     }
 
     // ---------- Static Methods ----------
