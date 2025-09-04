@@ -83,7 +83,7 @@ class Product {
 
     @Override
     public String toString() {
-        return productId + " | " + productName + " | ₹" + price + " | Stock: " + stockQuantity;
+        return productId + " | " + productName + " | Rs " + price + " | Stock: " + stockQuantity;
     }
 }
 
