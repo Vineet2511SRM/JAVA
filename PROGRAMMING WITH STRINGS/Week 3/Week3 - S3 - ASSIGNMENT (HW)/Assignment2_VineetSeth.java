@@ -176,9 +176,9 @@ class ShoppingCart {
         } else {
             for (int i = 0; i < itemCount; i++) {
                 System.out.println(products[i].getProductName() + " x " + quantities[i] +
-                                   " = ₹" + (products[i].getPrice() * quantities[i]));
+                                   " = Rs " + (products[i].getPrice() * quantities[i]));
             }
-            System.out.println("Cart Total: ₹" + cartTotal);
+            System.out.println("Cart Total: Rs " + cartTotal);
         }
     }
 
