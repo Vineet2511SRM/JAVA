@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ARRAY/ARRAY.iml" filepath="$PROJECT_DIR$/ARRAY/ARRAY.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CONTROL FLOW/CONTROL FLOW.iml" filepath="$PROJECT_DIR$/CONTROL FLOW/CONTROL FLOW.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Intelli J.iml" filepath="$PROJECT_DIR$/Intelli J.iml" />
+      <module fileurl="file://$PROJECT_DIR$/METHODS/METHODS.iml" filepath="$PROJECT_DIR$/METHODS/METHODS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/STEP - YEAR2/STEP - YEAR2.iml" filepath="$PROJECT_DIR$/STEP - YEAR2/STEP - YEAR2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/STRINGS/STRINGS.iml" filepath="$PROJECT_DIR$/STRINGS/STRINGS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CONTROL FLOW/WEEK 2/WEEK 2.iml" filepath="$PROJECT_DIR$/CONTROL FLOW/WEEK 2/WEEK 2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/STEP - YEAR2/WEEK 4/WEEK 4.iml" filepath="$PROJECT_DIR$/STEP - YEAR2/WEEK 4/WEEK 4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/STEP - YEAR2/WEEK 5/WEEK 5.iml" filepath="$PROJECT_DIR$/STEP - YEAR2/WEEK 5/WEEK 5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/STEP - YEAR2/Week 3/Week 3.iml" filepath="$PROJECT_DIR$/STEP - YEAR2/Week 3/Week 3.iml" />
+    </modules>
+  </component>
+</project>
