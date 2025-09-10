@@ -104,33 +104,92 @@ public class SmartDevice {
     }
 
     public static void main(String[] args) {
+        // ============================
+        // TODO: Create SmartDevice object
+        // ============================
         SmartDevice vineetDevice = new SmartDevice("VineetPhone", LocalDateTime.of(2022, 1, 15, 10, 0));
 
-        // Read-only properties
+        // ============================
+        // TODO: Demonstrate read-only properties
+        // - Show that values are set during construction
+        // - Attempt to find setter methods (should not exist, and they don’t!)
+        // - Display computed read-only properties
+        // ============================
         System.out.println("=== Vineet's Device ===");
-        System.out.println("Device ID: " + vineetDevice.getDeviceId());
-        System.out.println("Manufacturing Date: " + vineetDevice.getManufacturingDate());
-        System.out.println("Serial Number: " + vineetDevice.getSerialNumber());
-        System.out.println("Device Age: " + vineetDevice.getDeviceAge() + " years");
-        System.out.println("Uptime: " + vineetDevice.getUptime() + " seconds");
+        System.out.println("Device ID: " + vineetDevice.getDeviceId());               // Read-only
+        System.out.println("Manufacturing Date: " + vineetDevice.getManufacturingDate()); // Read-only
+        System.out.println("Serial Number: " + vineetDevice.getSerialNumber());       // Read-only
+        System.out.println("Device Age: " + vineetDevice.getDeviceAge() + " years");  // Computed read-only
+        System.out.println("Uptime: " + vineetDevice.getUptime() + " seconds");       // Computed read-only
 
-        // Write-only properties
+        // ============================
+        // TODO: Demonstrate write-only properties
+        // - Set encryption key and admin password
+        // - Attempt to retrieve them directly (not possible, no getter exists)
+        // - Use validation methods to verify they're set correctly
+        // ============================
         vineetDevice.setEncryptionKey("vineetKey123");
         vineetDevice.setAdminPassword("vineetPass");
         System.out.println("Encryption validation: " + vineetDevice.validateEncryptionKey("vineetKey123"));
         System.out.println("Admin password validation: " + vineetDevice.validateAdminPassword("vineetPass"));
 
-        // Read-write properties
+        // ============================
+        // TODO: Demonstrate read-write properties
+        // - Normal getter/setter operations
+        // - Show they can be both read and modified
+        // ============================
         System.out.println("Device Name: " + vineetDevice.getDeviceName());
-        vineetDevice.setDeviceName("VineetLaptop");
+        vineetDevice.setDeviceName("VineetLaptop"); // Modified
         System.out.println("Updated Device Name: " + vineetDevice.getDeviceName());
         System.out.println("Enabled: " + vineetDevice.isEnabled());
 
-        // Utility info
+        // ============================
+        // Utility Info: Show property access levels (extra demonstration)
+        // ============================
         System.out.println("Property Info: " + vineetDevice.getPropertyInfo());
 
-        // Reset test
+        // ============================
+        // Reset test: Shows write-only properties being cleared
+        // ============================
         vineetDevice.resetDevice();
         System.out.println("After Reset: " + vineetDevice);
+
+        // ============================
+        // TODO: Create multiple devices and show property independence
+        // Each device has its own read-only IDs, write-only secrets, and independent states
+        // ============================
+        SmartDevice laptopDevice = new SmartDevice("GamingLaptop", LocalDateTime.of(2023, 3, 5, 15, 0));
+        SmartDevice watchDevice = new SmartDevice("SmartWatch", LocalDateTime.of(2021, 6, 20, 9, 0));
+
+        // Setting independent write-only values
+        vineetDevice.setEncryptionKey("vineetKey123");
+        laptopDevice.setEncryptionKey("laptopKey456");
+        watchDevice.setEncryptionKey("watchKey789");
+
+        vineetDevice.setAdminPassword("vineetPass");
+        laptopDevice.setAdminPassword("laptopPass");
+        watchDevice.setAdminPassword("watchPass");
+
+        // Updating read-write values
+        vineetDevice.setDeviceName("VineetLaptop");
+        laptopDevice.setEnabled(false);
+        watchDevice.setDeviceName("FitWatch");
+
+        // Printing multiple devices to show independence
+        System.out.println("\n=== Multiple Devices ===");
+        System.out.println(vineetDevice);
+        System.out.println(laptopDevice);
+        System.out.println(watchDevice);
+
+        // ============================
+        // TODO: Test property access patterns with different scenarios
+        // - Validate passwords independently
+        // - Ensure no cross-device leakage
+        // ============================
+        System.out.println("\nValidation Checks:");
+        System.out.println("Vineet Device Password Valid: " + vineetDevice.validateAdminPassword("vineetPass"));
+        System.out.println("Laptop Device Password Valid: " + laptopDevice.validateAdminPassword("laptopPass"));
+        System.out.println("Watch Device Password Valid: " + watchDevice.validateAdminPassword("watchPass"));
     }
+
 }
