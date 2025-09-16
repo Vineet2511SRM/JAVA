@@ -56,3 +56,5 @@ public class LoginForm {
         frame.setVisible(true);                    // Make frame visible
     }
 }
+
+//Login Form (TextField, PasswordField, Button)
