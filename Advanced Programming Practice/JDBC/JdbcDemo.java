@@ -1,4 +1,3 @@
-package JDBC;
 import java.sql.*;
 
 public class JdbcDemo {
@@ -7,14 +6,14 @@ public class JdbcDemo {
             // 1. Load Driver
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // 2. Establish Connection
+            // 2. Connect
             Connection con = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/college",
                     "root",
                     "vineet12@11"
             );
 
-            // 3. Create Statement
+            // 3. Statement
             Statement stmt = con.createStatement();
 
             // 4. Execute
