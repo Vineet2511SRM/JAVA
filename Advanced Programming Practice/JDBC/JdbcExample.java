@@ -1,7 +1,7 @@
 package JDBC;
 import java.sql.*;
 
-public class JdbcDemo {
+public class JdbcExample {
     public static void main(String[] args) {
         try {
             // 1. Load Driver
