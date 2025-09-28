@@ -101,4 +101,4 @@ class SamePackageTest {
         System.out.println("publicField = " + obj.publicField);
         obj.publicMethod();
     }
-}
+}  
